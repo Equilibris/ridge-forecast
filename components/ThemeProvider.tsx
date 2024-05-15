@@ -1,5 +1,5 @@
 import { useColorScheme } from "@/hooks/useColorScheme"
-import React, { useMemo } from "react"
+import React, { ReactNode, useMemo } from "react"
 import {
   DarkTheme,
   DefaultTheme,
@@ -29,7 +29,9 @@ const theme = {
  *
  */
 
-export const ThemeProvider: React.FC = ({ children }) => {
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   // const colorScheme = useColorScheme();
 
   const rnTheme = useMemo(

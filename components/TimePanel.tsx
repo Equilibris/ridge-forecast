@@ -1,9 +1,9 @@
-import React, { FC } from "react"
+import React, { Component, FC } from "react"
 import styled from "@emotion/native"
 
 interface Props {
   title: string
-  RenderChild: Component<{ id: number }>
+  RenderChild: FC<{ id: number }>
 }
 
 const Container = styled.View``

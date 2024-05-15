@@ -1,13 +1,13 @@
 // Img from
 // https://www.freepik.com/free-vector/flat-design-mountain-range-silhouette_45123202.htm#query=mountain&position=0&from_view=keyword&track=sph&uuid=9c6db3aa-764f-43c2-a875-f6d99bf307aa
 
-import React, { useLayoutEffect, useState } from "react"
+import React, { FC, useLayoutEffect, useState } from "react"
 
 import { useLocalSearchParams, useNavigation } from "expo-router"
 import { SafeAreaView, ScrollView } from "react-native"
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { Divider, Text } from "react-native-paper"
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator } from "react-native-paper"
 import { Wind } from "@/components/Wind"
 import { Preciperation } from "@/components/Preciperation"
 import { Popularity } from "@/components/Popularity"
@@ -21,6 +21,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import { Bold } from "@/components/TextVariants"
 import { Center } from "@/components/Center"
 import { getMountainById } from "@/data/database"
+import { Mountain } from "@/data/models"
 
 const BackdropContainer = styled.View`
   position: absolute;
@@ -43,18 +44,17 @@ const ImgDimmer = styled.View`
   opacity: 0.5;
 `
 
-const Backdrop:FC<{ dimmed: bool }> = ({ dimmed }) => (
+const Backdrop: FC<{ dimmed?: boolean }> = ({ dimmed }) => (
   <BackdropContainer>
     <ImgClipper>
       <ImgTransformer>
-        {
-          dimmed ?
-            <ImgDimmer>
-              <Img />
-            </ImgDimmer>
-          :
+        {dimmed ? (
+          <ImgDimmer>
             <Img />
-        }
+          </ImgDimmer>
+        ) : (
+          <Img />
+        )}
       </ImgTransformer>
     </ImgClipper>
 
@@ -76,42 +76,36 @@ const Grow = styled.View`
   flex: 1;
 `
 
-const FixedHeight = styled.View`
-  height: 100px;
-`
-
-
 export default function Page() {
   const { id } = useLocalSearchParams()
   const navigation = useNavigation()
-  const [ mountain, setMountain ] = useState(null);
+  const [mountain, setMountain] = useState<null | Mountain>(null)
 
   useLayoutEffect(() => {
-    getMountainById(id).then(async mnt => {
-      await new Promise(r => setTimeout(r, 1500));
-      setMountain(mnt);
-      navigation.setOptions({
-        title: mnt.name,
-      });
-    });
+    if (typeof id === "string")
+      getMountainById(id).then(async (mnt) => {
+        await new Promise((r) => setTimeout(r, 1500))
+        setMountain(mnt)
+        navigation.setOptions({
+          title: mnt.name,
+        })
+      })
   }, [navigation])
-
 
   return (
     <ThemeProvider>
       <SafeAreaView>
-        { mountain !== null ?
+        {mountain !== null ? (
           <ScrollContainer>
             <Backdrop />
             <Horizontal style={{ height: 500 }} />
-
 
             <Horizontal>
               <Grow>
                 <Popularity value={mountain.popularity} sz={20} />
               </Grow>
             </Horizontal>
- 
+
             <Divider horizontalInset />
 
             <Horizontal>
@@ -125,26 +119,28 @@ export default function Page() {
 
             <Divider horizontalInset />
             <Grow>
-              <Preciperation
-                data={mountain.precipitation}
-              />
+              <Preciperation data={mountain.precipitation} />
             </Grow>
             <Divider horizontalInset />
             <Bold>Skiing</Bold>
             <Divider horizontalInset />
 
-            <SkiDisplay
-              pistes={mountain.data.pistes}
-            />
+            {mountain.data.type === "ski" ? (
+              <SkiDisplay pistes={mountain.data.pistes} />
+            ) : (
+              <></>
+            )}
           </ScrollContainer>
-          :
-          <Center style={{
-            height: "100%"
-          }}>
+        ) : (
+          <Center
+            style={{
+              height: "100%",
+            }}
+          >
             <Backdrop dimmed={true} />
             <ActivityIndicator size="large" animating={true} />
           </Center>
-        }
+        )}
       </SafeAreaView>
     </ThemeProvider>
   )

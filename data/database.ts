@@ -43,7 +43,9 @@ const database: Mountain[] = [
     temps: [-3, -15],
     height: 1200,
     baseCamp: 300,
-    emergency_services: [{ latitude: 45.1075869, longitude: 5.7757926 }],
+    emergency_services: [
+      { pos: { latitude: 45.1075869, longitude: 5.7757926 } },
+    ],
   },
 ]
 
