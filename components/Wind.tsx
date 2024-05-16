@@ -1,12 +1,11 @@
 import React, { FC, useCallback } from "react"
 import styled from "@emotion/native"
-import { TimePanel } from "./TimePanel"
+import { CommonProps, TimePanel } from "./TimePanel"
 import { Icon, Text } from "react-native-paper"
 import { Center } from "./Center"
 
-interface Props {
+interface Props extends CommonProps {
   data: [number, number][]
-  showTime?: boolean
 }
 
 const Container = styled.View`
@@ -18,7 +17,7 @@ const Rotator = styled(Center)`
   width: 30px;
 `
 
-export const Wind: FC<Props> = ({ data, showTime }) => {
+export const Wind: FC<Props> = ({ data, ...common }) => {
   const comp: FC<{ id: number }> = useCallback(
     ({ id }) => (
       <Container>
@@ -32,5 +31,5 @@ export const Wind: FC<Props> = ({ data, showTime }) => {
     [data],
   )
 
-  return <TimePanel RenderChild={comp} title="Wind" showTime={showTime} />
+  return <TimePanel RenderChild={comp} title="Wind" {...common} />
 }

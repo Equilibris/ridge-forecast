@@ -1,12 +1,11 @@
 import React, { FC, useCallback } from "react"
 import styled from "@emotion/native"
-import { TimePanel } from "./TimePanel"
-import { Icon, Text } from "react-native-paper"
+import { CommonProps, TimePanel } from "./TimePanel"
+import { Icon } from "react-native-paper"
 import { Precipitation as T, PrecipitationType } from "@/data/models"
 
-interface Props {
+interface Props extends CommonProps {
   data: T
-  showTime?: boolean
 }
 
 const Container = styled.View`
@@ -39,7 +38,7 @@ const selectIcon = (x: PrecipitationType) => {
   }
 }
 
-export const Preciperation: FC<Props> = ({ data, showTime }) => {
+export const Preciperation: FC<Props> = ({ data, ...common }) => {
   const comp: FC<{ id: number }> = useCallback(
     ({ id }) => (
       <Container>
@@ -56,7 +55,5 @@ export const Preciperation: FC<Props> = ({ data, showTime }) => {
     [data],
   )
 
-  return (
-    <TimePanel RenderChild={comp} title="Precipitation" showTime={showTime} />
-  )
+  return <TimePanel RenderChild={comp} title="Precipitation" {...common} />
 }

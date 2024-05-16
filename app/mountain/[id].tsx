@@ -125,7 +125,7 @@ export default function Page() {
 
             <Divider horizontalInset />
             <Grow>
-              <Preciperation showTime data={mountain.precipitation} />
+              <Preciperation showTime pop data={mountain.precipitation} />
             </Grow>
             <Divider horizontalInset />
             <Bold>Skiing</Bold>

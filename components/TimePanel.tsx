@@ -1,22 +1,30 @@
 import React, { FC } from "react"
-import styled from "@emotion/native"
+import styled, { css } from "@emotion/native"
 import { Text } from "react-native-paper"
 
-interface Props {
+export interface CommonProps {
+  showTime?: boolean
+  pop?: boolean
+}
+interface Props extends CommonProps {
   title: string
   RenderChild: FC<{ id: number }>
-  showTime?: boolean
 }
 
-const Container = styled.View`
+const Container = styled.View<{ pop?: boolean }>`
   padding: 16px;
-  background-color: ${(x) => x.theme.colors.background};
-  border-radius: 8px;
-  shadow-color: #000;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.25;
-  shadow-radius: 3.84px;
-  elevation: 5;
+  ${(x) =>
+    x.pop
+      ? css`
+          background-color: ${x.theme.colors.background};
+          border-radius: 8px;
+          shadow-color: #000;
+          shadow-offset: 0px 2px;
+          shadow-opacity: 0.25;
+          shadow-radius: 3.84px;
+          elevation: 5;
+        `
+      : ""}
 `
 
 const Title = styled.Text`
@@ -45,9 +53,9 @@ const getNextHours = (count: number): number[] => {
 }
 const hours = getNextHours(8)
 
-export const TimePanel: FC<Props> = ({ title, RenderChild, showTime }) => {
+export const TimePanel: FC<Props> = ({ title, RenderChild, showTime, pop }) => {
   return (
-    <Container>
+    <Container pop={pop}>
       <Title>{title}</Title>
       <ChildContainer>
         {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
