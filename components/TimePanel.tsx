@@ -1,9 +1,11 @@
-import React, { FC } from "react";
-import styled from "@emotion/native";
+import React, { FC } from "react"
+import styled from "@emotion/native"
+import { Text } from "react-native-paper"
 
 interface Props {
-  title: string;
-  RenderChild: FC<{ id: number }>;
+  title: string
+  RenderChild: FC<{ id: number }>
+  showTime?: boolean
 }
 
 const Container = styled.View`
@@ -11,11 +13,11 @@ const Container = styled.View`
   background-color: ${(x) => x.theme.colors.background};
   border-radius: 8px;
   shadow-color: #000;
-  shadow-offset: { width: 0, height: 2 };
+  shadow-offset: 0px 2px;
   shadow-opacity: 0.25;
   shadow-radius: 3.84px;
   elevation: 5;
-`;
+`
 
 const Title = styled.Text`
   font-size: ${(x) => x.theme.fonts.headlineLarge.fontSize}px;
@@ -25,21 +27,42 @@ const Title = styled.Text`
   margin-left: 16px;
   margin-top: 16px;
   text-align: left;
-`;
+`
 
 const ChildContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-`;
+`
 
-export const TimePanel: FC<Props> = ({ title, RenderChild }) => (
-  <Container>
-    <Title>{title}</Title>
-    <ChildContainer>
-      {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
-        <RenderChild key={x} id={x} />
-      ))}
-    </ChildContainer>
-  </Container>
-);
+const InnerChildContainer = styled.View`
+  gap: ${(x) => x.theme.padding(1)};
+`
+
+const getNextHours = (count: number): number[] => {
+  const currentHour = new Date().getHours()
+  return Array.from({ length: count }, (_, i) => (currentHour + i) % 24)
+}
+const hours = getNextHours(8)
+
+export const TimePanel: FC<Props> = ({ title, RenderChild, showTime }) => {
+  return (
+    <Container>
+      <Title>{title}</Title>
+      <ChildContainer>
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
+          <InnerChildContainer key={x}>
+            <RenderChild id={x} />
+            {showTime ? (
+              <Text
+                style={{ textAlign: "center" }}
+              >{`${hours[x] + 1}:00`}</Text>
+            ) : (
+              <></>
+            )}
+          </InnerChildContainer>
+        ))}
+      </ChildContainer>
+    </Container>
+  )
+}

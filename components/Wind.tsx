@@ -6,10 +6,11 @@ import { Center } from "./Center"
 
 interface Props {
   data: [number, number][]
+  showTime?: boolean
 }
 
 const Container = styled.View`
-  height: ${(x) => x.theme.padding(14)};
+  height: ${(x) => x.theme.padding(7)};
   gap: ${(x) => x.theme.padding(1)};
 `
 const Rotator = styled(Center)`
@@ -17,7 +18,7 @@ const Rotator = styled(Center)`
   width: 30px;
 `
 
-export const Wind: FC<Props> = ({ data }) => {
+export const Wind: FC<Props> = ({ data, showTime }) => {
   const comp: FC<{ id: number }> = useCallback(
     ({ id }) => (
       <Container>
@@ -31,5 +32,5 @@ export const Wind: FC<Props> = ({ data }) => {
     [data],
   )
 
-  return <TimePanel RenderChild={comp} title="Wind" />
+  return <TimePanel RenderChild={comp} title="Wind" showTime={showTime} />
 }

@@ -6,10 +6,11 @@ import { Precipitation as T, PrecipitationType } from "@/data/models"
 
 interface Props {
   data: T
+  showTime?: boolean
 }
 
 const Container = styled.View`
-  height: ${(x) => x.theme.padding(14)};
+  height: ${(x) => x.theme.padding(10)};
   gap: ${(x) => x.theme.padding(1)};
   align-items: center;
   justify-content: center;
@@ -38,29 +39,24 @@ const selectIcon = (x: PrecipitationType) => {
   }
 }
 
-const getNextHours = (count: number): number[] => {
-  const currentHour = new Date().getHours();
-  return Array.from({ length: count }, (_, i) => (currentHour + i) % 24);
-};
-
-
-export const Preciperation: FC<Props> = ({ data }) => {
-  const hours = getNextHours(8);
-
+export const Preciperation: FC<Props> = ({ data, showTime }) => {
   const comp: FC<{ id: number }> = useCallback(
     ({ id }) => (
       <Container>
         <OuterIndicator>
-          <Indicator style={{ height: 1 + data[id][1] * 50, borderRadius: 3}} />
+          <Indicator
+            style={{ height: 1 + data[id][1] * 50, borderRadius: 3 }}
+          />
         </OuterIndicator>
         <OuterIcon>
           <Icon size={30} source={selectIcon(data[id][0])} />
         </OuterIcon>
-        <Text style={{ textAlign: "center" }}>{`${hours[id] + 1}:00`}</Text>
       </Container>
     ),
     [data],
   )
 
-  return <TimePanel RenderChild={comp} title="Precipitation" />
+  return (
+    <TimePanel RenderChild={comp} title="Precipitation" showTime={showTime} />
+  )
 }
