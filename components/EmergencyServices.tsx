@@ -19,7 +19,6 @@ const Buttonize = styled.View`
   background: ${(p) => p.theme.colors.primary};
   padding: 10px;
   border-radius: 100px;
-  // filter: drop-shadow(20px 1px 1px red);
 `
 
 export const EmergencyServices: FC<Props> = ({ data }) => {

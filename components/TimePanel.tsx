@@ -1,5 +1,5 @@
 import React, { Component, FC } from "react"
-import styled from "@emotion/native"
+import styled, { css } from "@emotion/native"
 import { Text } from "react-native-paper"
 
 export interface CommonProps {
@@ -55,7 +55,7 @@ const hours = getNextHours(8)
 export const TimePanel: FC<Props> = ({ title, RenderChild, showTime, pop }) => {
   return (
     <Container pop={pop}>
-      <Title>{title}</Title>
+      <Text variant="titleMedium" style={{ paddingBottom: 20 }}>{title}</Text>
       <ChildContainer>
         {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
           <InnerChildContainer key={x}>
