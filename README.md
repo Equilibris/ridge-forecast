@@ -8,7 +8,7 @@
 - [ ] Avalance (Harry)
 - [ ] Make the preciperation component look good (Hifzur)
 - [ ] Add temprature at different altitudes component (William)
-- [ ] Add more mountains (Mate)
+- [x] Add more mountains (Mate)
   - They are located in the file called `database.tsx`
 - [ ] Make react-native-paper theme match theme specified in the UI
 - [x] Make the bottom sheet in index.tsx look good (William)
