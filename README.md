@@ -4,7 +4,8 @@
 
 **WHEN YOU DO CODE MAKE SURE TO PR SO WE CAN CATCH SIMPLE REACT MISTAKES**
 
-- [ ] Implement mountain screen (Harry)
+- [x] Implement mountain screen (Harry)
+- [ ] Avalance (Harry)
 - [ ] Make the preciperation component look good (Hifzur)
 - [ ] Add temprature at different altitudes component (William)
 - [ ] Add more mountains (Mate)
