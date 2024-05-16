@@ -38,7 +38,7 @@ const ListContainer = styled.View`
   gap: ${(x) => x.theme.padding(1)};
 `
 
-export const SkiDisplay: FC<{ pistes: T[] }> = ({ pistes }) => (
+export const ClimbDisplay: FC<{ pistes: T[] }> = ({ pistes }) => (
   <>
     <Text>Skiing</Text>
     <ListContainer style={{ padding: 20 }}>

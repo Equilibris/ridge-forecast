@@ -7,19 +7,26 @@ import { SkiDisplay } from "./SkiDisplay"
 import { ClimbDisplay } from "./ClimbDisplay"
 
 const selectDisplay = (data: Activity) => {
-  console.log(data);
+  console.log(data)
   switch (data.type) {
-    case "ski": return <SkiDisplay pistes={data.pistes} />;
-    case "climb": return <ClimbDisplay />;
+    case "ski":
+      return <SkiDisplay pistes={data.pistes} />
+    case "climb":
+      return <ClimbDisplay />
   }
 }
 
 export const ActivityDisplay: FC<{ data: Activity }> = ({ data }) => (
   <>
     <Center>
-      <Text variant="titleLarge" style={{ fontWeight: "bold", textTransform: "capitalize" }}>{ data.type }</Text>
+      <Text
+        variant="titleLarge"
+        style={{ fontWeight: "bold", textTransform: "capitalize" }}
+      >
+        {data.type}
+      </Text>
     </Center>
 
-    { selectDisplay(data) }
+    {selectDisplay(data)}
   </>
 )

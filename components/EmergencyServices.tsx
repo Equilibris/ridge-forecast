@@ -16,9 +16,9 @@ const Horizontal = styled.View`
 `
 
 const Buttonize = styled.View`
-  background: ${p => p.theme.colors.button};
+  background: ${(p) => p.theme.colors.primary};
   padding: 10px;
-  border-radius: 100px; 
+  border-radius: 100px;
   // filter: drop-shadow(20px 1px 1px red);
 `
 
@@ -32,9 +32,7 @@ export const EmergencyServices: FC<Props> = ({ data }) => {
   }, [data, loc])
   return data.length > 0 ? (
     <Center>
-      <Text variant="titleMedium">
-        Emergency Services
-      </Text>
+      <Text variant="titleMedium">Emergency Services</Text>
       <Horizontal>
         <Pad padding="5px 12px 5px 10px">
           <Icon size={50} source="map-marker-distance" />
@@ -49,7 +47,12 @@ export const EmergencyServices: FC<Props> = ({ data }) => {
             <Icon size={30} source="map-outline" />
           </Buttonize>
           <Center>
-            <Text variant="labelMedium" style={{ fontWeight: "bold", padding: 3 }}>View</Text>
+            <Text
+              variant="labelMedium"
+              style={{ fontWeight: "bold", padding: 3 }}
+            >
+              View
+            </Text>
           </Center>
         </Pad>
       </Horizontal>

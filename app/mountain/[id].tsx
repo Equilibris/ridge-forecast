@@ -124,9 +124,8 @@ export default function Page() {
             </Horizontal>
 
             <Divider horizontalInset />
-
-            <Grow style={{ padding: 20 }}>
-              <Preciperation data={mountain.precipitation} />
+            <Grow>
+              <Preciperation showTime data={mountain.precipitation} />
             </Grow>
 
             <Divider horizontalInset />
@@ -134,7 +133,6 @@ export default function Page() {
             <Pad padding="20px 0 0 0">
               <ActivityDisplay data={mountain.data} />
             </Pad>
-
           </ScrollContainer>
         ) : (
           <Center
