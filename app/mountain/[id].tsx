@@ -22,6 +22,7 @@ import { Bold } from "@/components/TextVariants"
 import { Center } from "@/components/Center"
 import { getMountainById } from "@/data/database"
 import { Mountain } from "@/data/models"
+import { Pad } from "@/components/Pad"
 import { AltsAtHeights } from "@/components/TextAtAlts"
 
 const BackdropContainer = styled.View`
@@ -75,6 +76,7 @@ const Horizontal = styled.View`
 `
 const Grow = styled.View`
   flex: 1;
+  flex-direction: column-reverse;
 `
 
 export default function Page() {
@@ -102,17 +104,20 @@ export default function Page() {
 
             <Horizontal>
               <Grow>
-                <Popularity value={mountain.popularity} sz={20} />
+                <Popularity value={mountain.popularity} sz={40} />
               </Grow>
               <AltsAtHeights bot={10} top={20} height={500} />
             </Horizontal>
 
             <Divider horizontalInset />
 
-            <Horizontal>
+            <Horizontal style={{ padding: 10 }}>
               <Grow>
                 <Avalanches data={mountain.avalancheSafety} />
               </Grow>
+
+              <Divider style={{ width: 1, height: "100%" }} />
+
               <Grow>
                 <EmergencyServices data={mountain.emergency_services} />
               </Grow>

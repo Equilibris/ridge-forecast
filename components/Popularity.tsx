@@ -36,7 +36,7 @@ const textSelector = (v: T) => {
 
 export const Popularity: FC<Props> = ({ value, sz }) => (
     <TopContainer>
-        <Text>{textSelector(value)}</Text>
+        <Text variant="labelMedium">{textSelector(value)}</Text>
         <PopularityLite value={value} sz={sz} />
     </TopContainer>
 )

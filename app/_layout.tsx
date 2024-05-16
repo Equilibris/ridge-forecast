@@ -14,7 +14,7 @@ import "react-native-reanimated"
 import { useColorScheme } from "@/hooks/useColorScheme"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { DataProvider } from "@/data/dataProvider"
-import { LocationDataProvider } from "@/data/locationDataProvider"
+import { UserDataProvider } from "@/data/userDataProvider"
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -38,7 +38,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView>
       <DataProvider>
-        <LocationDataProvider>
+        <UserDataProvider>
           <ThemeProvider
             value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
           >
@@ -48,7 +48,7 @@ export default function RootLayout() {
               <Stack.Screen name="+not-found" />
             </Stack>
           </ThemeProvider>
-        </LocationDataProvider>
+        </UserDataProvider>
       </DataProvider>
     </GestureHandlerRootView>
   )
