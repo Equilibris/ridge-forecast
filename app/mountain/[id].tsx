@@ -76,6 +76,7 @@ const Horizontal = styled.View`
 `
 const Grow = styled.View`
   flex: 1;
+  flex-direction: column-reverse;
 `
 
 export default function Page() {
