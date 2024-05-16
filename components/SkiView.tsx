@@ -4,7 +4,7 @@ import { PopularityLite } from "./Popularity"
 import { Piste as T } from "@/data/models"
 import { Bold } from "./TextVariants"
 import { useTheme } from "@emotion/react"
-import { ProgressBar, Text } from "react-native-paper"
+import { ProgressBar } from "react-native-paper"
 
 const PisteContainer = styled.View`
   flex-direction: row;
@@ -38,13 +38,10 @@ const ListContainer = styled.View`
   gap: ${(x) => x.theme.padding(1)};
 `
 
-export const ClimbDisplay: FC<{ pistes: T[] }> = ({ pistes }) => (
-  <>
-    <Text>Skiing</Text>
-    <ListContainer style={{ padding: 20 }}>
-      {pistes.map((v, idx) => (
-        <Piste key={idx} {...v} />
-      ))}
-    </ListContainer>
-  </>
+export const SkiDisplay: FC<{ pistes: T[] }> = ({ pistes }) => (
+  <ListContainer>
+    {pistes.map((v, idx) => (
+      <Piste key={idx} {...v} />
+    ))}
+  </ListContainer>
 )
