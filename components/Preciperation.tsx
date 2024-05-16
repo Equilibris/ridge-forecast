@@ -11,6 +11,8 @@ interface Props {
 const Container = styled.View`
   height: ${(x) => x.theme.padding(14)};
   gap: ${(x) => x.theme.padding(1)};
+  align-items: center;
+  justify-content: center;
 `
 
 const OuterIndicator = styled.View`
@@ -36,21 +38,29 @@ const selectIcon = (x: PrecipitationType) => {
   }
 }
 
+const getNextHours = (count: number): number[] => {
+  const currentHour = new Date().getHours();
+  return Array.from({ length: count }, (_, i) => (currentHour + i) % 24);
+};
+
+
 export const Preciperation: FC<Props> = ({ data }) => {
+  const hours = getNextHours(8);
+
   const comp: FC<{ id: number }> = useCallback(
     ({ id }) => (
       <Container>
         <OuterIndicator>
-          <Indicator style={{ height: 1 + data[id][1] * 50 }} />
+          <Indicator style={{ height: 1 + data[id][1] * 50, borderRadius: 3}} />
         </OuterIndicator>
         <OuterIcon>
           <Icon size={30} source={selectIcon(data[id][0])} />
         </OuterIcon>
-        <Text style={{ textAlign: "center" }}>{`${id + 12}h`}</Text>
+        <Text style={{ textAlign: "center" }}>{`${hours[id] + 1}:00`}</Text>
       </Container>
     ),
     [data],
   )
 
-  return <TimePanel RenderChild={comp} title="Preciperation" />
+  return <TimePanel RenderChild={comp} title="Precipitation" />
 }
