@@ -1,15 +1,15 @@
 import React, { useCallback, useRef, useState } from "react"
 
 import MapView, { Marker } from "react-native-maps"
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet"
+import BottomSheet from "@gorhom/bottom-sheet"
 import styled from "@emotion/native"
-import { Text } from "react-native"
 import { useData } from "@/data/dataProvider"
 import { Mountain } from "@/data/models"
 import { MapModal } from "@/components/MapModal"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { useTheme } from "@emotion/react"
 
-const Main = styled.SafeAreaView`
+const Main = styled.View`
   background-color: papayawhip;
 
   height: 100%;
@@ -26,6 +26,23 @@ export default function Index() {
     () => sheetRef.current && sheetRef.current.expand(),
     [],
   )
+
+  const Sheet = useCallback(() => {
+    const theme = useTheme()
+
+    return (
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={["20%", "60%"]}
+        index={-1}
+        enablePanDownToClose
+        backgroundStyle={{ backgroundColor: theme.colors.background }}
+        handleIndicatorStyle={{ backgroundColor: theme.colors.onBackground }}
+      >
+        {selected ? <MapModal {...selected} /> : <></>}
+      </BottomSheet>
+    )
+  }, [selected, sheetRef])
 
   return (
     <ThemeProvider>
@@ -56,14 +73,7 @@ export default function Index() {
           ))}
         </MapView>
       </Main>
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={["20%", "80%"]}
-        index={-1}
-        enablePanDownToClose
-      >
-        {selected ? <MapModal {...selected} /> : <></>}
-      </BottomSheet>
+      <Sheet />
     </ThemeProvider>
   )
 }
