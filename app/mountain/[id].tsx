@@ -22,6 +22,7 @@ import { Bold } from "@/components/TextVariants"
 import { Center } from "@/components/Center"
 import { getMountainById } from "@/data/database"
 import { Mountain } from "@/data/models"
+import { Pad } from "@/components/Pad"
 
 const BackdropContainer = styled.View`
   position: absolute;
@@ -108,14 +109,19 @@ export default function Page() {
 
             <Divider horizontalInset />
 
-            <Horizontal>
-              <Grow>
-                <Avalanches data={mountain.avalancheSafety} />
-              </Grow>
-              <Grow>
-                <EmergencyServices data={mountain.emergency_services} />
-              </Grow>
-            </Horizontal>
+            <Pad padding="10px">
+              <Horizontal>
+                <Grow>
+                  <Avalanches data={mountain.avalancheSafety} />
+                </Grow>
+
+                <Divider style={{ width: 1, height: "100%" }} />
+
+                <Grow>
+                  <EmergencyServices data={mountain.emergency_services} />
+                </Grow>
+              </Horizontal>
+            </Pad>
 
             <Divider horizontalInset />
             <Grow>
