@@ -12,26 +12,26 @@ interface Props {
 
 const selectAvalancheText = (data: T) => {
   switch (data) {
-    case "safe": return "SAFE";
-    case "moderate": return "AT RISK";
-    case "severe": return "DIE";
-    case "suicide": return "DIE :(";
+    case "safe":
+      return "SAFE"
+    case "moderate":
+      return "AT RISK"
+    case "severe":
+      return "DIE"
+    case "suicide":
+      return "DIE :("
   }
 }
 
 export const Avalanches: FC<Props> = ({ data }) => {
-  const { beacon } = useUserData();
+  const { beacon } = useUserData()
   return (
     <Center>
-      <Text variant="titleMedium">
-        Avalanches
-      </Text>
-      <Pad padding="5px 12px 5px 10px">
-        <Center>
-          <Text variant="displayMedium">{selectAvalancheText(data)}</Text>
-          <Text variant="labelMedium">Beacon { beacon ? "on" : "off" }</Text>
-        </Center>
-      </Pad>
+      <Text variant="titleMedium">Avalanches</Text>
+      <Center style={{ padding: "5px 12px 5px 10px" }}>
+        <Text variant="displayMedium">{selectAvalancheText(data)}</Text>
+        <Text variant="labelMedium">Beacon {beacon ? "on" : "off"}</Text>
+      </Center>
     </Center>
   )
 }

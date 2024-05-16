@@ -111,19 +111,17 @@ export default function Page() {
 
             <Divider horizontalInset />
 
-            <Pad padding="10px">
-              <Horizontal>
-                <Grow>
-                  <Avalanches data={mountain.avalancheSafety} />
-                </Grow>
+            <Horizontal style={{ padding: 10 }}>
+              <Grow>
+                <Avalanches data={mountain.avalancheSafety} />
+              </Grow>
 
-                <Divider style={{ width: 1, height: "100%" }} />
+              <Divider style={{ width: 1, height: "100%" }} />
 
-                <Grow>
-                  <EmergencyServices data={mountain.emergency_services} />
-                </Grow>
-              </Horizontal>
-            </Pad>
+              <Grow>
+                <EmergencyServices data={mountain.emergency_services} />
+              </Grow>
+            </Horizontal>
 
             <Divider horizontalInset />
             <Grow>
