@@ -52,5 +52,5 @@ export const Preciperation: FC<Props> = ({ data }) => {
     [data],
   )
 
-  return <TimePanel RenderChild={comp} title="Preciperation" />
+  return <TimePanel RenderChild={comp} title="Precipitation" />
 }

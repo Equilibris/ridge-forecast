@@ -29,8 +29,8 @@ export const Avalanches: FC<Props> = ({ data }) => {
     <Center>
       <Text variant="titleMedium">Avalanches</Text>
       <Center style={{ padding: "5px 12px 5px 10px" }}>
-        <Text variant="displayMedium">{selectAvalancheText(data)}</Text>
-        <Text variant="labelMedium">Beacon {beacon ? "on" : "off"}</Text>
+        <Text variant="displayMedium" style={{ fontWeight: "bold", padding: 5 }}>{selectAvalancheText(data)}</Text>
+        <Text variant="labelMedium" style={{ paddingBottom: 4 }}>Beacon {beacon ? "on" : "off"}</Text>
       </Center>
     </Center>
   )

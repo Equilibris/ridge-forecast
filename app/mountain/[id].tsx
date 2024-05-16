@@ -11,7 +11,6 @@ import { ActivityIndicator } from "react-native-paper"
 import { Wind } from "@/components/Wind"
 import { Preciperation } from "@/components/Preciperation"
 import { Popularity } from "@/components/Popularity"
-import { SkiDisplay } from "@/components/SkiView"
 import { Avalanches } from "@/components/Avalanches"
 import { EmergencyServices } from "@/components/EmergencyServices"
 import { Card, ProgressBar } from "react-native-paper"
@@ -19,6 +18,7 @@ import styled from "@emotion/native"
 import Img from "@/assets/mountain"
 import { LinearGradient } from "expo-linear-gradient"
 import { Bold } from "@/components/TextVariants"
+import { ActivityDisplay } from "@/components/ActivityDisplay"
 import { Center } from "@/components/Center"
 import { getMountainById } from "@/data/database"
 import { Mountain } from "@/data/models"
@@ -103,7 +103,7 @@ export default function Page() {
             <Backdrop />
 
             <Horizontal>
-              <Grow>
+              <Grow style={{ padding: 10 }}>
                 <Popularity value={mountain.popularity} sz={40} />
               </Grow>
               <AltsAtHeights bot={10} top={20} height={500} />
@@ -124,18 +124,17 @@ export default function Page() {
             </Horizontal>
 
             <Divider horizontalInset />
-            <Grow>
+
+            <Grow style={{ padding: 20 }}>
               <Preciperation data={mountain.precipitation} />
             </Grow>
-            <Divider horizontalInset />
-            <Bold>Skiing</Bold>
+
             <Divider horizontalInset />
 
-            {mountain.data.type === "ski" ? (
-              <SkiDisplay pistes={mountain.data.pistes} />
-            ) : (
-              <></>
-            )}
+            <Pad padding="20px 0 0 0">
+              <ActivityDisplay data={mountain.data} />
+            </Pad>
+
           </ScrollContainer>
         ) : (
           <Center
