@@ -15,6 +15,10 @@ const Horizontal = styled.View`
   flex-direction: row;
 `
 
+const Buttonize = styled.View`
+  
+`
+
 export const EmergencyServices: FC<Props> = ({ data }) => {
   const { loc } = useUserData()
   const shortestDist = useMemo(() => {
@@ -38,7 +42,14 @@ export const EmergencyServices: FC<Props> = ({ data }) => {
           </Center>
         </Pad>
         <Pad padding="5px 12px 5px 10px">
-          <Icon size={50} source="map-outline" />
+          <Buttonize>
+            <Icon size={50} source="map-outline" />
+          </Buttonize>
+          <Center>
+            <Pad padding="3px 0px 3px 0px">
+              <Text variant="labelMedium" style={{ fontWeight: "bold" }}>View</Text>
+            </Pad>
+          </Center>
         </Pad>
       </Horizontal>
     </Center>

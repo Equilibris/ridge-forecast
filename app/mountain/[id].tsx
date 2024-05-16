@@ -99,13 +99,15 @@ export default function Page() {
         {mountain !== null ? (
           <ScrollContainer>
             <Backdrop />
-            <Horizontal style={{ height: 500 }} />
+            <Horizontal style={{ height: 424 }} />
 
-            <Horizontal>
-              <Grow>
-                <Popularity value={mountain.popularity} sz={20} />
-              </Grow>
-            </Horizontal>
+            <Pad padding="10px">
+              <Horizontal>
+                <Grow>
+                  <Popularity value={mountain.popularity} sz={40} />
+                </Grow>
+              </Horizontal>
+            </Pad>
 
             <Divider horizontalInset />
 
