@@ -54,6 +54,7 @@ export const MapModal = (m: Mountain) => {
         ]}
       />
       <Preciperation
+        showTime
         data={[
           ["snow", 0],
           ["snow", 0],

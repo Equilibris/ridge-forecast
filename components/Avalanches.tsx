@@ -22,13 +22,17 @@ const selectAvalancheText = (data: T) => {
       return "DIE :("
   }
 }
-
 export const Avalanches: FC<Props> = ({ data }) => {
   const { beacon } = useUserData()
   return (
     <Center>
       <Text variant="titleMedium">Avalanches</Text>
-      <Center style={{ padding: "5px 12px 5px 10px" }}>
+      <Center
+        // @ts-expect-error This is wrongly typed as padding can be a 4-tuple
+        style={{
+          padding: "5px 12px 5px 10px",
+        }}
+      >
         <Text variant="displayMedium">{selectAvalancheText(data)}</Text>
         <Text variant="labelMedium">Beacon {beacon ? "on" : "off"}</Text>
       </Center>
