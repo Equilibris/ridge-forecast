@@ -1,5 +1,5 @@
-import React, { FC } from "react"
-import styled, { css } from "@emotion/native"
+import React, { Component, FC } from "react"
+import styled from "@emotion/native"
 import { Text } from "react-native-paper"
 
 export interface CommonProps {
@@ -36,7 +36,6 @@ const Title = styled.Text`
   margin-top: 16px;
   text-align: left;
 `
-
 const ChildContainer = styled.View`
   flex-direction: row;
   align-items: center;

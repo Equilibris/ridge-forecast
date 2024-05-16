@@ -17,6 +17,7 @@ const theme = {
   roundness: 2,
   colors: {
     ...MD3DarkTheme.colors,
+    button: "#0f223b"
   },
   padding: (entry: number) => `${entry * 8}px`,
 }

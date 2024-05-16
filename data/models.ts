@@ -77,3 +77,5 @@ export interface Mountain {
 
   data: Ski | Climb
 }
+
+export type Activity = Ski | Climb;
