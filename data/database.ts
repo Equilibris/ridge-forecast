@@ -49,7 +49,7 @@ const database: Mountain[] = [
   },
   {
     id: 1,
-    name: "Grenoble :scream:",
+    name: "Grenoble :scream: ??",
 
     popularity: 3,
     avalancheSafety: "moderate",
