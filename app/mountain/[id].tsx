@@ -23,6 +23,7 @@ import { Center } from "@/components/Center"
 import { getMountainById } from "@/data/database"
 import { Mountain } from "@/data/models"
 import { Pad } from "@/components/Pad"
+import { AltsAtHeights } from "@/components/TextAtAlts"
 
 const BackdropContainer = styled.View`
   position: absolute;
@@ -85,7 +86,7 @@ export default function Page() {
   useLayoutEffect(() => {
     if (typeof id === "string")
       getMountainById(id).then(async (mnt) => {
-        await new Promise((r) => setTimeout(r, 1500))
+        await new Promise((r) => setTimeout(r, 250))
         setMountain(mnt)
         navigation.setOptions({
           title: mnt.name,
@@ -99,15 +100,13 @@ export default function Page() {
         {mountain !== null ? (
           <ScrollContainer>
             <Backdrop />
-            <Horizontal style={{ height: 424 }} />
 
-            <Pad padding="10px">
-              <Horizontal>
-                <Grow>
-                  <Popularity value={mountain.popularity} sz={40} />
-                </Grow>
-              </Horizontal>
-            </Pad>
+            <Horizontal>
+              <Grow>
+                <Popularity value={mountain.popularity} sz={40} />
+              </Grow>
+              <AltsAtHeights bot={10} top={20} height={500} />
+            </Horizontal>
 
             <Divider horizontalInset />
 
