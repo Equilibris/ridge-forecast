@@ -82,6 +82,7 @@ export const MapModal = (m: Mountain) => {
       >
         <ButtonText>View mountain</ButtonText>
       </Button>
+      <View style={{ height: 100 }} />
     </BottomSheet>
   )
 }
