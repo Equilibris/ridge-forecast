@@ -2,7 +2,7 @@ import { Mountain } from "./models"
 
 const database: Mountain[] = [
   {
-    id: 0,
+    id: "0",
     name: "hellossss world",
 
     popularity: 2,
@@ -48,7 +48,7 @@ const database: Mountain[] = [
     ],
   },
   {
-    id: 1,
+    id: "1",
     name: "Kronplatz",
 
     popularity: 3,
@@ -72,7 +72,19 @@ const database: Mountain[] = [
       ],
     },
     wind: [[135, 20]],
-    precipitation: [["rain", 0.6]],
+    precipitation: [
+      ["clear", 0.0],
+      ["rain", 0.1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+    ],
     temps: [2, -5],
     height: 2275,
     baseCamp: 900,
@@ -81,7 +93,7 @@ const database: Mountain[] = [
     ]
   },
   {
-    id: 2,
+    id: "2",
     name: "Val d'Isere",
 
     popularity: 3,
@@ -104,7 +116,19 @@ const database: Mountain[] = [
       ],
     },
     wind: [[185, 15]],
-    precipitation: [["rain", 0.8]],
+    precipitation: [
+      ["rain", 0.8],
+      ["rain", 0.1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+    ],
     temps: [9, -13],
     height: 3488,
     baseCamp: 1850,
@@ -114,6 +138,6 @@ const database: Mountain[] = [
   },
 ]
 
-export const getMountainById = async (_: string): Promise<Mountain> =>
-  database[0]
+export const getMountainById = async (id: string): Promise<Mountain> =>
+  database.find(mnt => mnt.id === id)
 export const getMountains = async (): Promise<Mountain[]> => database

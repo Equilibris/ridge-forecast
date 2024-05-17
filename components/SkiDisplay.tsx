@@ -26,7 +26,7 @@ const ProgressContainer = styled.View`
 const Piste: FC<T> = ({ snowQuality, popularity, difficulty, name }) => (
   <PisteContainer>
     <Circ style={{ backgroundColor: difficulty }} />
-    <Bold style={{ flex: 1, textAlign: "center" }}>{name}</Bold>
+    <Bold style={{ flex: 1, minWidth: 60 }} numberOfLines={1}>{name}</Bold>
     <ProgressContainer>
       <ProgressBar progress={snowQuality} color="#fff" />
     </ProgressContainer>
@@ -41,6 +41,8 @@ const ListContainer = styled.View`
 export const SkiDisplay: FC<{ pistes: T[] }> = ({ pistes }) => (
   <>
     <ListContainer style={{ padding: 20 }}>
+      {/* placeholder, this is a TERRIBLE way of doing this and should be changed */}
+      <Text>Diff   Name                Snow Quality             Popularity</Text>
       {pistes.map((v, idx) => (
         <Piste key={idx} {...v} />
       ))}
