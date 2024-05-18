@@ -15,6 +15,21 @@ export interface EmergencyService {
   pos: Pos
 }
 
+export interface Route {
+  // source
+  // Fontainebleau scale
+  difficulty: "4" | "5" | "5+" |
+              "6a" | "6a+" | "6b+" | "6c" | "6c+" | "7a" |
+              "7a+" | "7b" | "7b+" | "7c" |
+              "7c+" | "8a" | "8a+" | "8b" |
+              "8b+" | "8c+" | "9a" |
+              "9a+"
+
+  name: string
+
+  popularity: Popularity
+}
+
 export interface Climb {
   type: "climb"
   conditions: Condition
@@ -23,13 +38,16 @@ export interface Climb {
   humidity: number
 
   /** hours */
-  last_percipitation: number
+  last_precipitation: number
 
   /** percent */
   grip: number
 
   gear: string[]
+
+  routes: Route[]
 }
+
 
 export interface Piste {
   // source
