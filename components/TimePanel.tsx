@@ -1,21 +1,21 @@
-import React, { Component, FC } from "react"
-import styled from "@emotion/native"
+import React, { FC } from "react"
+import styled, { css } from "@emotion/native"
 import { Text } from "react-native-paper"
 
 export interface CommonProps {
-  showTime?: boolean
-  pop?: boolean
+    showTime?: boolean
+    pop?: boolean
 }
 interface Props extends CommonProps {
-  title: string
-  RenderChild: FC<{ id: number }>
+    title: string
+    RenderChild: FC<{ id: number }>
 }
 
 const Container = styled.View<{ pop?: boolean }>`
   padding: 16px;
   ${(x) =>
-    x.pop
-      ? css`
+        x.pop
+            ? css`
           border-radius: 8px;
           shadow-color: #000;
           shadow-offset: 0px 2px;
@@ -23,7 +23,7 @@ const Container = styled.View<{ pop?: boolean }>`
           shadow-radius: 3.84px;
           elevation: 5;
         `
-      : ""}
+            : ""}
 `
 
 const Title = styled.Text`
@@ -46,29 +46,29 @@ const InnerChildContainer = styled.View`
 `
 
 const getNextHours = (count: number): number[] => {
-  const currentHour = new Date().getHours()
-  return Array.from({ length: count }, (_, i) => (currentHour + i) % 24)
+    const currentHour = new Date().getHours()
+    return Array.from({ length: count }, (_, i) => (currentHour + i) % 24)
 }
 const hours = getNextHours(8)
 
 export const TimePanel: FC<Props> = ({ title, RenderChild, showTime, pop }) => {
-  return (
-    <Container pop={pop}>
-      <Title>{title}</Title>
-      <ChildContainer>
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
-          <InnerChildContainer key={x}>
-            <RenderChild id={x} />
-            {showTime ? (
-              <Text
-                style={{ textAlign: "center" }}
-              >{`${hours[x] + 1}:00`}</Text>
-            ) : (
-              <></>
-            )}
-          </InnerChildContainer>
-        ))}
-      </ChildContainer>
-    </Container>
-  )
+    return (
+        <Container pop={pop}>
+            <Title>{title}</Title>
+            <ChildContainer>
+                {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
+                    <InnerChildContainer key={x}>
+                        <RenderChild id={x} />
+                        {showTime ? (
+                            <Text
+                                style={{ textAlign: "center" }}
+                            >{`${hours[x] + 1}:00`}</Text>
+                        ) : (
+                            <></>
+                        )}
+                    </InnerChildContainer>
+                ))}
+            </ChildContainer>
+        </Container>
+    )
 }
