@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useRef, useCallback } from "react"
-import { TouchableHighlight } from "react-native"
+import { TouchableHighlight, GestureResponderEvent } from "react-native"
 import { Icon, Text } from "react-native-paper"
 import { EmergencyService as T } from "@/data/models"
 import { useUserData } from "@/data/userDataProvider"
@@ -10,8 +10,8 @@ import { useTheme } from "@emotion/react"
 import styled from "@emotion/native"
 
 interface Props {
-  data: T[],
-  cb: Function
+  data: T[]
+  cb: (x: GestureResponderEvent) => null
 }
 
 const Horizontal = styled.View`

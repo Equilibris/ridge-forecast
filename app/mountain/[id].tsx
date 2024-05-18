@@ -1,23 +1,26 @@
 // Img from
 // https://www.freepik.com/free-vector/flat-design-mountain-range-silhouette_45123202.htm#query=mountain&position=0&from_view=keyword&track=sph&uuid=9c6db3aa-764f-43c2-a875-f6d99bf307aa
 
-import React, { FC, useLayoutEffect, useState, useRef, useCallback } from "react"
+import React, {
+  FC,
+  useLayoutEffect,
+  useState,
+  useRef,
+  useCallback,
+} from "react"
 
 import { useLocalSearchParams, useNavigation } from "expo-router"
-import { SafeAreaView, ScrollView } from "react-native"
+import { SafeAreaView, GestureResponderEvent } from "react-native"
 import { ThemeProvider } from "@/components/ThemeProvider"
-import { Divider, Text } from "react-native-paper"
-import { ActivityIndicator, Icon } from "react-native-paper"
-import { Wind } from "@/components/Wind"
+import { Divider } from "react-native-paper"
+import { ActivityIndicator } from "react-native-paper"
 import { Preciperation } from "@/components/Preciperation"
 import { Popularity } from "@/components/Popularity"
 import { Avalanches } from "@/components/Avalanches"
 import { EmergencyServices } from "@/components/EmergencyServices"
-import { Card, ProgressBar } from "react-native-paper"
 import styled from "@emotion/native"
 import Img from "@/assets/mountain"
 import { LinearGradient } from "expo-linear-gradient"
-import { Bold } from "@/components/TextVariants"
 import { ActivityDisplay } from "@/components/ActivityDisplay"
 import { Center } from "@/components/Center"
 import { getMountainById } from "@/data/database"
@@ -89,21 +92,24 @@ export default function Page() {
 
   useLayoutEffect(() => {
     if (typeof id === "string")
-      getMountainById(id).then(async (mnt) => {
-        await new Promise((r) => setTimeout(r, 1250))
-        setMountain(mnt)
-        navigation.setOptions({
-          title: mnt.name,
-        })
+      getMountainById(parseInt(id)).then(async (mnt) => {
+        if (mnt !== undefined) {
+          console.log(mnt)
+          await new Promise((r) => setTimeout(r, 1250))
+          setMountain(mnt)
+          navigation.setOptions({
+            title: mnt.name,
+          })
+        }
       })
   }, [navigation])
 
   const sheetRef = useRef<BottomSheet>(null)
 
-  const openSheet = useCallback(
-    () => sheetRef.current && sheetRef.current.expand(),
-    [],
-  )
+  const openSheet = useCallback((_: GestureResponderEvent): null => {
+    sheetRef.current && sheetRef.current.expand()
+    return null
+  }, [])
 
   const Sheet = useCallback(() => {
     const theme = useTheme()
@@ -126,10 +132,10 @@ export default function Page() {
             longitudeDelta: 1,
           }}
         >
-          {mountain?.emergency_services?.map((v) => (
+          {mountain?.emergency_services?.map((v, i) => (
             // TODO: improve data model for emergency services so they can have key/title
             <Marker
-              // key={v.id}
+              key={i}
               coordinate={{
                 latitude: v.pos.latitude,
                 longitude: v.pos.longitude,
@@ -151,7 +157,7 @@ export default function Page() {
     <ThemeProvider>
       <SafeAreaView>
         {mountain !== null ? (
-          <ScrollContainer contentOffset={{x: 4, y: 4243}}>
+          <ScrollContainer contentOffset={{ x: 4, y: 4243 }}>
             <Backdrop />
 
             <Horizontal>
@@ -171,7 +177,10 @@ export default function Page() {
               <Divider style={{ width: 1, height: "100%" }} />
 
               <Grow>
-                <EmergencyServices data={mountain.emergency_services} cb={openSheet} />
+                <EmergencyServices
+                  data={mountain.emergency_services}
+                  cb={openSheet}
+                />
               </Grow>
             </Horizontal>
 

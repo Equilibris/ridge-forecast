@@ -7,7 +7,6 @@ import { SkiDisplay } from "./SkiDisplay"
 import { ClimbDisplay } from "./ClimbDisplay"
 
 const selectDisplay = (data: Activity) => {
-  console.log(data)
   switch (data.type) {
     case "ski":
       return <SkiDisplay pistes={data.pistes} />

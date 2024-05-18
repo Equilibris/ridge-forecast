@@ -19,15 +19,18 @@ const Rotator = styled(Center)`
 
 export const Wind: FC<Props> = ({ data, ...common }) => {
   const comp: FC<{ id: number }> = useCallback(
-    ({ id }) => (
-      <Container>
-        <Rotator style={{ transform: `rotate(-${90 + data[id][0]}deg)` }}>
-          <Icon size={30} source="arrow-down" />
-        </Rotator>
+    ({ id }) =>
+      id < data.length ? (
+        <Container>
+          <Rotator style={{ transform: `rotate(-${90 + data[id][0]}deg)` }}>
+            <Icon size={30} source="arrow-down" />
+          </Rotator>
 
-        <Text style={{ textAlign: "center" }}>{`${data[id][1]}m/s`}</Text>
-      </Container>
-    ),
+          <Text style={{ textAlign: "center" }}>{`${data[id][1]}m/s`}</Text>
+        </Container>
+      ) : (
+        <></>
+      ),
     [data],
   )
 

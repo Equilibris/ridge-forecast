@@ -2,7 +2,7 @@ import { Mountain } from "./models"
 
 const database: Mountain[] = [
   {
-    id: "0",
+    id: 0,
     name: "hellossss world",
 
     popularity: 2,
@@ -393,6 +393,7 @@ const database: Mountain[] = [
   },
 ]
 
-export const getMountainById = async (id: string): Promise<Mountain> =>
-  database.find((mnt) => mnt.id === id)
+export const getMountainById = async (
+  id: number,
+): Promise<Mountain | undefined> => database.find((mnt) => mnt.id === id)
 export const getMountains = async (): Promise<Mountain[]> => database
