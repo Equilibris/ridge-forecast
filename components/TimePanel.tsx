@@ -1,4 +1,4 @@
-import React, { Component, FC } from "react"
+import React, { FC } from "react"
 import styled, { css } from "@emotion/native"
 import { Text } from "react-native-paper"
 
@@ -16,7 +16,6 @@ const Container = styled.View<{ pop?: boolean }>`
   ${(x) =>
     x.pop
       ? css`
-          background-color: ${x.theme.colors.background};
           border-radius: 8px;
           shadow-color: #000;
           shadow-offset: 0px 2px;
@@ -55,7 +54,7 @@ const hours = getNextHours(8)
 export const TimePanel: FC<Props> = ({ title, RenderChild, showTime, pop }) => {
   return (
     <Container pop={pop}>
-      <Text variant="titleMedium" style={{ paddingBottom: 20 }}>{title}</Text>
+      <Title>{title}</Title>
       <ChildContainer>
         {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
           <InnerChildContainer key={x}>
