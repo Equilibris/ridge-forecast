@@ -18,11 +18,33 @@ const Main = styled.View`
   width: 100%;
 `
 
+const StyledMarker = styled.View<{ selected: boolean }>`
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  border-width: 1px;
+  border-color: #fff;
+
+  background-color: ${(x) => (x.selected ? x.theme.colors.primary : "red")};
+`
+
+const markerStyles = StyleSheet.create({
+  marker: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+})
+
 export default function Index() {
   const mountains = useData()
 
   const sheetRef = useRef<BottomSheet>(null)
-  const [selected, setSelected] = useState<Mountain | null>(null)
+  const [selected, setSelected] = useState<Mountain | false>(false)
 
   const openSheet = useCallback(
     () => sheetRef.current && sheetRef.current.expand(),
@@ -46,33 +68,14 @@ export default function Index() {
     )
   }, [selected, sheetRef])
 
-
-  const markerStyles = StyleSheet.create({
-    marker: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: 30,
-      height: 30,
-      borderRadius: 20,
-      borderWidth: 1,
-      borderColor: 'white',
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.8,
-      shadowRadius: 2,
-      elevation: 5,
-    },
-  });
-
-
   const getIconName = (activity: Ski | Climb) => {
     switch (activity.type) {
-      case 'ski':
-      return 'ski';
-      case 'climb':
-        return 'terrain';
+      case "ski":
+        return "ski"
+      case "climb":
+        return "terrain"
       default:
-        return 'help'
+        return "help"
     }
   }
 
@@ -90,29 +93,25 @@ export default function Index() {
         >
           {mountains.map((v) => (
             <Marker
-            key={v.id}
-            coordinate={{
-              latitude: v.pos.latitude,
-              longitude: v.pos.longitude,
-            }}
-            title={v.name}
-            tappable
-            onPress={() => {
-              setSelected(v);
-              openSheet();
-            }}
-          >
-            <View style={[
-                markerStyles.marker,
-                { backgroundColor: selected && selected.id === v.id ? '#8B0000' : 'red' }
-              ]}>
-              <Icon
-                source={getIconName(v.data)}
-                size={20}
-                color={"white"}
-              />
-            </View>
-          </Marker>
+              key={v.id}
+              coordinate={{
+                latitude: v.pos.latitude,
+                longitude: v.pos.longitude,
+              }}
+              title={v.name}
+              tappable
+              onPress={() => {
+                setSelected(v)
+                openSheet()
+              }}
+            >
+              <StyledMarker
+                selected={selected && selected.id === v.id}
+                style={[markerStyles.marker]}
+              >
+                <Icon source={getIconName(v.data)} size={20} color={"white"} />
+              </StyledMarker>
+            </Marker>
           ))}
         </MapView>
       </Main>
