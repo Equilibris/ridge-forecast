@@ -40,18 +40,21 @@ const selectIcon = (x: PrecipitationType) => {
 
 export const Preciperation: FC<Props> = ({ data, ...common }) => {
   const comp: FC<{ id: number }> = useCallback(
-    ({ id }) => (
-      <Container>
-        <OuterIndicator>
-          <Indicator
-            style={{ height: 1 + data[id][1] * 50, borderRadius: 3 }}
-          />
-        </OuterIndicator>
-        <OuterIcon>
-          <Icon size={30} source={selectIcon(data[id][0])} />
-        </OuterIcon>
-      </Container>
-    ),
+    ({ id }) =>
+      id < data.length ? (
+        <Container>
+          <OuterIndicator>
+            <Indicator
+              style={{ height: 1 + data[id][1] * 50, borderRadius: 3 }}
+            />
+          </OuterIndicator>
+          <OuterIcon>
+            <Icon size={30} source={selectIcon(data[id][0])} />
+          </OuterIcon>
+        </Container>
+      ) : (
+        <></>
+      ),
     [data],
   )
 

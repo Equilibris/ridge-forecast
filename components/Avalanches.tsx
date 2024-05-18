@@ -15,11 +15,11 @@ const selectAvalancheText = (data: T) => {
     case "safe":
       return "SAFE"
     case "moderate":
-      return "AT RISK"
+      return "RISK"
     case "severe":
-      return "DIE"
+      return "HIGH"
     case "suicide":
-      return "DIE :("
+      return "EXT"
   }
 }
 export const Avalanches: FC<Props> = ({ data }) => {
@@ -33,8 +33,8 @@ export const Avalanches: FC<Props> = ({ data }) => {
           padding: "5px 12px 5px 10px",
         }}
       >
-        <Text variant="displayMedium">{selectAvalancheText(data)}</Text>
-        <Text variant="labelMedium">Beacon {beacon ? "on" : "off"}</Text>
+        <Text variant="displayMedium" style={{ padding: 3, fontWeight: "bold" }}>{selectAvalancheText(data)}</Text>
+        <Text variant="labelMedium" style={{ paddingBottom: 8 }}>Beacon {beacon ? "on" : "off"}</Text>
       </Center>
     </Center>
   )

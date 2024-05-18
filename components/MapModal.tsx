@@ -38,37 +38,8 @@ export const MapModal = (m: Mountain) => {
         <Bold variant="headlineLarge">{mapper[m.data.type]}</Bold>
       </TitleContainer>
 
-      <Wind
-        data={[
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-        ]}
-      />
-      <Preciperation
-        showTime
-        data={[
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-          ["snow", 0],
-        ]}
-      />
+      <Wind data={m.wind} />
+      <Preciperation showTime data={m.precipitation} />
 
       <View style={{ flexGrow: 1 }} />
 

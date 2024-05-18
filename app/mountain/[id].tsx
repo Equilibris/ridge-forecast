@@ -1,29 +1,35 @@
 // Img from
 // https://www.freepik.com/free-vector/flat-design-mountain-range-silhouette_45123202.htm#query=mountain&position=0&from_view=keyword&track=sph&uuid=9c6db3aa-764f-43c2-a875-f6d99bf307aa
 
-import React, { FC, useLayoutEffect, useState } from "react"
+import React, {
+  FC,
+  useLayoutEffect,
+  useState,
+  useRef,
+  useCallback,
+} from "react"
 
 import { useLocalSearchParams, useNavigation } from "expo-router"
-import { SafeAreaView, ScrollView } from "react-native"
+import { SafeAreaView, GestureResponderEvent } from "react-native"
 import { ThemeProvider } from "@/components/ThemeProvider"
-import { Divider, Text } from "react-native-paper"
+import { Divider } from "react-native-paper"
 import { ActivityIndicator } from "react-native-paper"
-import { Wind } from "@/components/Wind"
 import { Preciperation } from "@/components/Preciperation"
 import { Popularity } from "@/components/Popularity"
 import { Avalanches } from "@/components/Avalanches"
 import { EmergencyServices } from "@/components/EmergencyServices"
-import { Card, ProgressBar } from "react-native-paper"
 import styled from "@emotion/native"
 import Img from "@/assets/mountain"
 import { LinearGradient } from "expo-linear-gradient"
-import { Bold } from "@/components/TextVariants"
 import { ActivityDisplay } from "@/components/ActivityDisplay"
 import { Center } from "@/components/Center"
 import { getMountainById } from "@/data/database"
 import { Mountain } from "@/data/models"
 import { Pad } from "@/components/Pad"
 import { AltsAtHeights } from "@/components/TextAtAlts"
+import MapView, { Marker } from "react-native-maps"
+import BottomSheet from "@gorhom/bottom-sheet"
+import { useTheme } from "@emotion/react"
 
 const BackdropContainer = styled.View`
   position: absolute;
@@ -86,20 +92,72 @@ export default function Page() {
 
   useLayoutEffect(() => {
     if (typeof id === "string")
-      getMountainById(id).then(async (mnt) => {
-        await new Promise((r) => setTimeout(r, 250))
-        setMountain(mnt)
-        navigation.setOptions({
-          title: mnt.name,
-        })
+      getMountainById(parseInt(id)).then(async (mnt) => {
+        if (mnt !== undefined) {
+          console.log(mnt)
+          await new Promise((r) => setTimeout(r, 1250))
+          setMountain(mnt)
+          navigation.setOptions({
+            title: mnt.name,
+          })
+        }
       })
   }, [navigation])
+
+  const sheetRef = useRef<BottomSheet>(null)
+
+  const openSheet = useCallback((_: GestureResponderEvent): null => {
+    sheetRef.current && sheetRef.current.expand()
+    return null
+  }, [])
+
+  const Sheet = useCallback(() => {
+    const theme = useTheme()
+
+    return (
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={["20%", "85%"]}
+        index={-1}
+        enablePanDownToClose
+        backgroundStyle={{ backgroundColor: theme.colors.background }}
+        handleIndicatorStyle={{ backgroundColor: theme.colors.onBackground }}
+      >
+        <MapView
+          style={{ height: "100%", width: "100%" }}
+          initialRegion={{
+            latitude: 45.1842259,
+            longitude: 5.6743406,
+            latitudeDelta: 1,
+            longitudeDelta: 1,
+          }}
+        >
+          {mountain?.emergency_services?.map((v, i) => (
+            // TODO: improve data model for emergency services so they can have key/title
+            <Marker
+              key={i}
+              coordinate={{
+                latitude: v.pos.latitude,
+                longitude: v.pos.longitude,
+              }}
+              // title={v.name}
+              // tappable
+              // onPress={() => {
+              //   setSelected(v)
+              //   openSheet()
+              // }}
+            />
+          ))}
+        </MapView>
+      </BottomSheet>
+    )
+  }, [sheetRef])
 
   return (
     <ThemeProvider>
       <SafeAreaView>
         {mountain !== null ? (
-          <ScrollContainer>
+          <ScrollContainer contentOffset={{ x: 4, y: 4243 }}>
             <Backdrop />
 
             <Horizontal>
@@ -119,7 +177,10 @@ export default function Page() {
               <Divider style={{ width: 1, height: "100%" }} />
 
               <Grow>
-                <EmergencyServices data={mountain.emergency_services} />
+                <EmergencyServices
+                  data={mountain.emergency_services}
+                  cb={openSheet}
+                />
               </Grow>
             </Horizontal>
 
@@ -145,6 +206,8 @@ export default function Page() {
           </Center>
         )}
       </SafeAreaView>
+
+      <Sheet />
     </ThemeProvider>
   )
 }

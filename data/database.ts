@@ -47,7 +47,7 @@ const database: Mountain[] = [
       { pos: { latitude: 45.1075869, longitude: 5.7757926 } },
     ],
   },
-  
+
   // Skiing
   {
     id: 1,
@@ -60,23 +60,60 @@ const database: Mountain[] = [
       type: "ski",
       conditions: "good",
       pistes: [
-        { popularity: 1, difficulty: "red", name: "Clapierre", snowQuality: 0.4 },
-        { popularity: 3, difficulty: "blue", name: "Souchette", snowQuality: 0.7 },
-        { popularity: 1, difficulty: "black", name: "Vallons du pra", snowQuality: 0.3 },
-        { popularity: 2, difficulty: "blue", name: "Coulemelle", snowQuality: 0.5 },
+        {
+          popularity: 1,
+          difficulty: "red",
+          name: "Clapierre",
+          snowQuality: 0.4,
+        },
+        {
+          popularity: 3,
+          difficulty: "blue",
+          name: "Souchette",
+          snowQuality: 0.7,
+        },
+        {
+          popularity: 1,
+          difficulty: "black",
+          name: "Vallons du pra",
+          snowQuality: 0.3,
+        },
+        {
+          popularity: 2,
+          difficulty: "blue",
+          name: "Coulemelle",
+          snowQuality: 0.5,
+        },
         { popularity: 2, difficulty: "red", name: "Girolle", snowQuality: 0.5 },
-        { popularity: 0, difficulty: "black", name: "Plan du pra", snowQuality: 0.6 },
+        {
+          popularity: 0,
+          difficulty: "black",
+          name: "Plan du pra",
+          snowQuality: 0.6,
+        },
       ],
     },
     wind: [[135, 20]],
-    precipitation: [["rain", 0.3]],
-    temps: [2, -13],
-    height: 2977,
-    baseCamp: 860,
-    emergency_services: [ 
+    precipitation: [
+      ["clear", 0.0],
+      ["rain", 0.1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+    ],
+    temps: [2, -5],
+    height: 2275,
+    baseCamp: 900,
+    emergency_services: [
       { pos: { latitude: 45.1811828, longitude: 5.5486001 } },
       { pos: { latitude: 45.1802828, longitude: 5.5498001 } },
-    ]
+    ],
   },
   {
     id: 2,
@@ -89,26 +126,83 @@ const database: Mountain[] = [
       type: "ski",
       conditions: "bad",
       pistes: [
-        { popularity: 1, difficulty: "blue",  name: "Boucle Daille",              snowQuality: 0.4 },
-        { popularity: 2, difficulty: "blue",  name: "Boucle Laisinant",           snowQuality: 0.3 },
-        { popularity: 2, difficulty: "blue",  name: "Piste Fond Le Manchet",      snowQuality: 0.5 },
-        { popularity: 1, difficulty: "red",   name: "Piste Fond Manchet Cascade", snowQuality: 0.6 },
-        { popularity: 1, difficulty: "black", name: "Cretes",                     snowQuality: 0.1 },
-        { popularity: 0, difficulty: "black", name: "Campanules",                 snowQuality: 0.2 },
-        { popularity: 1, difficulty: "black", name: "Paquerettes",                snowQuality: 0.3 },
-        { popularity: 2, difficulty: "blue",  name: "Cafo",                       snowQuality: 0.4 },
-        { popularity: 3, difficulty: "blue",  name: "Lavachet",                   snowQuality: 0.4 },
-        { popularity: 2, difficulty: "red",   name: "Edelweiss",                  snowQuality: 0.1 },
+        {
+          popularity: 1,
+          difficulty: "blue",
+          name: "Boucle Daille",
+          snowQuality: 0.4,
+        },
+        {
+          popularity: 2,
+          difficulty: "blue",
+          name: "Boucle Laisinant",
+          snowQuality: 0.3,
+        },
+        {
+          popularity: 2,
+          difficulty: "blue",
+          name: "Piste Fond Le Manchet",
+          snowQuality: 0.5,
+        },
+        {
+          popularity: 1,
+          difficulty: "red",
+          name: "Piste Fond Manchet Cascade",
+          snowQuality: 0.6,
+        },
+        {
+          popularity: 1,
+          difficulty: "black",
+          name: "Cretes",
+          snowQuality: 0.1,
+        },
+        {
+          popularity: 0,
+          difficulty: "black",
+          name: "Campanules",
+          snowQuality: 0.2,
+        },
+        {
+          popularity: 1,
+          difficulty: "black",
+          name: "Paquerettes",
+          snowQuality: 0.3,
+        },
+        { popularity: 2, difficulty: "blue", name: "Cafo", snowQuality: 0.4 },
+        {
+          popularity: 3,
+          difficulty: "blue",
+          name: "Lavachet",
+          snowQuality: 0.4,
+        },
+        {
+          popularity: 2,
+          difficulty: "red",
+          name: "Edelweiss",
+          snowQuality: 0.1,
+        },
       ],
     },
-    wind: [[97, 8]],
-    precipitation: [["snow", 0.6]],
+    wind: [[185, 15]],
+    precipitation: [
+      ["rain", 0.8],
+      ["rain", 0.1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 1],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+      ["snow", 0.2],
+    ],
     temps: [9, -13],
     height: 3488,
     baseCamp: 1850,
-    emergency_services: [ 
-      { pos: { latitude: 44.9664985, longitude: 5.530923 }, },
-    ]
+    emergency_services: [
+      { pos: { latitude: 44.9664985, longitude: 5.530923 } },
+    ],
   },
   {
     id: 3,
@@ -121,12 +215,37 @@ const database: Mountain[] = [
       type: "ski",
       conditions: "mid",
       pistes: [
-        { popularity: 1, difficulty: "black", name: "Fraisses", snowQuality: 0.5 },
-        { popularity: 2, difficulty: "red", name: "Planolet", snowQuality: 0.7 },
+        {
+          popularity: 1,
+          difficulty: "black",
+          name: "Fraisses",
+          snowQuality: 0.5,
+        },
+        {
+          popularity: 2,
+          difficulty: "red",
+          name: "Planolet",
+          snowQuality: 0.7,
+        },
         { popularity: 2, difficulty: "red", name: "Bruyere", snowQuality: 0.7 },
-        { popularity: 0, difficulty: "black", name: "Dromadaire", snowQuality: 0.3 },
-        { popularity: 3, difficulty: "blue", name: "Gentiane", snowQuality: 0.8 },
-        { popularity: 2, difficulty: "blue", name: "Eterlou", snowQuality: 0.6 },
+        {
+          popularity: 0,
+          difficulty: "black",
+          name: "Dromadaire",
+          snowQuality: 0.3,
+        },
+        {
+          popularity: 3,
+          difficulty: "blue",
+          name: "Gentiane",
+          snowQuality: 0.8,
+        },
+        {
+          popularity: 2,
+          difficulty: "blue",
+          name: "Eterlou",
+          snowQuality: 0.6,
+        },
       ],
     },
     wind: [[273, 11]],
@@ -134,18 +253,17 @@ const database: Mountain[] = [
     temps: [11, -9],
     height: 1789,
     baseCamp: 900,
-    emergency_services: [ 
-      { pos: { latitude: 45.299, longitude: 5.821 }, },
-      { pos: { latitude: 45.301, longitude: 5.823 }, },
-      { pos: { latitude: 45.298, longitude: 5.822 }, }
-    ]
+    emergency_services: [
+      { pos: { latitude: 45.299, longitude: 5.821 } },
+      { pos: { latitude: 45.301, longitude: 5.823 } },
+      { pos: { latitude: 45.298, longitude: 5.822 } },
+    ],
   },
-
 
   // Climbing
   {
     id: 4,
-    name: "Saint Pancrasse", 
+    name: "Saint Pancrasse",
 
     popularity: 2,
     avalancheSafety: "safe",
@@ -163,7 +281,7 @@ const database: Mountain[] = [
         { popularity: 2, difficulty: "7c+", name: "Pourquoi pas" },
         { popularity: 1, difficulty: "7a", name: "Choc à pic" },
         { popularity: 0, difficulty: "5", name: "La cheminée" },
-        { popularity: 0, difficulty: "8c+", name: "La Directe du Crapaud"}
+        { popularity: 0, difficulty: "8c+", name: "La Directe du Crapaud" },
       ],
     },
     wind: [[233, 12.2]],
@@ -171,14 +289,12 @@ const database: Mountain[] = [
     temps: [17, -1],
     height: 2082,
     baseCamp: 640,
-    emergency_services: [ 
-      { pos: { latitude: 45.28368, longitude: 5.86555 } }
-    ]
+    emergency_services: [{ pos: { latitude: 45.28368, longitude: 5.86555 } }],
   },
 
   {
     id: 5,
-    name: "Le Petit Désert", 
+    name: "Le Petit Désert",
 
     popularity: 3,
     avalancheSafety: "safe",
@@ -204,18 +320,16 @@ const database: Mountain[] = [
     temps: [15, 3],
     height: 1901,
     baseCamp: 420,
-    emergency_services: [ 
-      { pos: { latitude: 45.18117, longitude: 5.67605 } }
-    ]
+    emergency_services: [{ pos: { latitude: 45.18117, longitude: 5.67605 } }],
   },
 
   {
     id: 6,
-    name: "Lans en Vercors", 
+    name: "Lans en Vercors",
 
     popularity: 3,
     avalancheSafety: "moderate",
-    pos: { latitude: 45.12604, longitude: 5.60320 },
+    pos: { latitude: 45.12604, longitude: 5.6032 },
     data: {
       type: "climb",
       conditions: "good",
@@ -237,19 +351,19 @@ const database: Mountain[] = [
     temps: [17, -3],
     height: 2341,
     baseCamp: 536,
-    emergency_services: [ 
-      { pos: { latitude: 45.12504, longitude: 5.60220 } },
-      { pos: { latitude: 45.12304, longitude: 5.60120 } },
-    ]
+    emergency_services: [
+      { pos: { latitude: 45.12504, longitude: 5.6022 } },
+      { pos: { latitude: 45.12304, longitude: 5.6012 } },
+    ],
   },
 
   {
     id: 7,
-    name: "Pierrot Beach", 
+    name: "Pierrot Beach",
 
     popularity: 2,
     avalancheSafety: "safe",
-    pos: { latitude: 45.07104, longitude: 5.40233  },
+    pos: { latitude: 45.07104, longitude: 5.40233 },
     data: {
       type: "climb",
       conditions: "bad",
@@ -261,7 +375,11 @@ const database: Mountain[] = [
         { popularity: 2, difficulty: "6b+", name: "Bichon Futé" },
         { popularity: 0, difficulty: "8a", name: "Mérou" },
         { popularity: 1, difficulty: "7c", name: "Dutroumania" },
-        { popularity: 2, difficulty: "6b+", name: "Travailler moins pour gagner moins" },
+        {
+          popularity: 2,
+          difficulty: "6b+",
+          name: "Travailler moins pour gagner moins",
+        },
         { popularity: 3, difficulty: "6c", name: "Socquettes et crispettes" },
         { popularity: 3, difficulty: "8a", name: "La puesta del Sol" },
       ],
@@ -271,12 +389,11 @@ const database: Mountain[] = [
     temps: [16, -6],
     height: 2087,
     baseCamp: 465,
-    emergency_services: [ 
-      { pos: { latitude: 45.07204, longitude: 5.40333  } }
-    ]
+    emergency_services: [{ pos: { latitude: 45.07204, longitude: 5.40333 } }],
   },
 ]
 
-export const getMountainById = async (_: string): Promise<Mountain> =>
-  database[0]
+export const getMountainById = async (
+  id: number,
+): Promise<Mountain | undefined> => database.find((mnt) => mnt.id === id)
 export const getMountains = async (): Promise<Mountain[]> => database
