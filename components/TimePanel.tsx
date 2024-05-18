@@ -16,7 +16,6 @@ const Container = styled.View<{ pop?: boolean }>`
   ${(x) =>
     x.pop
       ? css`
-          background-color: ${x.theme.colors.background};
           border-radius: 8px;
           shadow-color: #000;
           shadow-offset: 0px 2px;
