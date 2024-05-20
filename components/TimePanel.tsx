@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 import styled, { css } from "@emotion/native"
 import { Text } from "react-native-paper"
+import { Bold } from "./TextVariants"
 
 export interface CommonProps {
   showTime?: boolean
@@ -54,7 +55,7 @@ const hours = getNextHours(8)
 export const TimePanel: FC<Props> = ({ title, RenderChild, showTime, pop }) => {
   return (
     <Container pop={pop}>
-      <Title>{title}</Title>
+      <Title><Bold>{title}</Bold></Title>
       <ChildContainer>
         {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
           <InnerChildContainer key={x}>

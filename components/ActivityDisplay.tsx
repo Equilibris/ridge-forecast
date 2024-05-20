@@ -11,7 +11,7 @@ const selectDisplay = (data: Activity) => {
     case "ski":
       return <SkiDisplay pistes={data.pistes} />
     case "climb":
-      return <ClimbDisplay />
+      return <ClimbDisplay data={data} />
   }
 }
 

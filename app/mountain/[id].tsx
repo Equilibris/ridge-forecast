@@ -95,7 +95,7 @@ export default function Page() {
       getMountainById(parseInt(id)).then(async (mnt) => {
         if (mnt !== undefined) {
           console.log(mnt)
-          await new Promise((r) => setTimeout(r, 1250))
+          await new Promise((r) => setTimeout(r, 300))
           setMountain(mnt)
           navigation.setOptions({
             title: mnt.name,
@@ -157,7 +157,7 @@ export default function Page() {
     <ThemeProvider>
       <SafeAreaView>
         {mountain !== null ? (
-          <ScrollContainer contentOffset={{ x: 4, y: 4243 }}>
+          <ScrollContainer>
             <Backdrop />
 
             <Horizontal>
@@ -166,8 +166,6 @@ export default function Page() {
               </Grow>
               <AltsAtHeights bot={10} top={20} height={500} />
             </Horizontal>
-
-            <Divider horizontalInset />
 
             <Horizontal style={{ padding: 10 }}>
               <Grow>
@@ -184,12 +182,9 @@ export default function Page() {
               </Grow>
             </Horizontal>
 
-            <Divider horizontalInset />
             <Grow>
               <Preciperation showTime pop data={mountain.precipitation} />
             </Grow>
-
-            <Divider horizontalInset />
 
             <Pad padding="20px 0 0 0">
               <ActivityDisplay data={mountain.data} />
