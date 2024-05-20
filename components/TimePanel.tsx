@@ -27,7 +27,7 @@ const Container = styled.View<{ pop?: boolean }>`
       : ""}
 `
 
-const Title = styled.Text`
+const Title = styled(Text)`
   font-size: ${(x) => x.theme.fonts.headlineLarge.fontSize}px;
   font-weight: ${(x) => x.theme.fonts.headlineLarge.fontWeight};
   color: ${(x) => x.theme.colors.onSurface};
@@ -55,7 +55,9 @@ const hours = getNextHours(8)
 export const TimePanel: FC<Props> = ({ title, RenderChild, showTime, pop }) => {
   return (
     <Container pop={pop}>
-      <Title><Bold>{title}</Bold></Title>
+      <Title>
+        <Bold>{title}</Bold>
+      </Title>
       <ChildContainer>
         {[0, 1, 2, 3, 4, 5, 6, 7].map((x) => (
           <InnerChildContainer key={x}>

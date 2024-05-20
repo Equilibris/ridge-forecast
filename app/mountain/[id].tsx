@@ -167,6 +167,8 @@ export default function Page() {
               <AltsAtHeights bot={10} top={20} height={500} />
             </Horizontal>
 
+            <Divider horizontalInset />
+
             <Horizontal style={{ padding: 10 }}>
               <Grow>
                 <Avalanches data={mountain.avalancheSafety} />
@@ -182,9 +184,12 @@ export default function Page() {
               </Grow>
             </Horizontal>
 
+            <Divider horizontalInset />
             <Grow>
-              <Preciperation showTime pop data={mountain.precipitation} />
+              <Preciperation showTime data={mountain.precipitation} />
             </Grow>
+
+            <Divider horizontalInset />
 
             <Pad padding="20px 0 0 0">
               <ActivityDisplay data={mountain.data} />
@@ -206,38 +211,3 @@ export default function Page() {
     </ThemeProvider>
   )
 }
-
-/*
- *
-          <ScrollView>
-            <Wind
-              data={[
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-              ]}
-            />
-            <SkiDisplay
-              pistes={[
-                {
-                  name: "hello",
-                  difficulty: "red",
-                  popularity: 1,
-                  snowQuality: 0.5,
-                },
-                {
-                  name: "world",
-                  difficulty: "blue",
-                  popularity: 2,
-                  snowQuality: 0.6,
-                },
-              ]}
-            />
-            */
