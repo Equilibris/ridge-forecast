@@ -95,7 +95,7 @@ export default function Page() {
       getMountainById(parseInt(id)).then(async (mnt) => {
         if (mnt !== undefined) {
           console.log(mnt)
-          await new Promise((r) => setTimeout(r, 1250))
+          await new Promise((r) => setTimeout(r, 300))
           setMountain(mnt)
           navigation.setOptions({
             title: mnt.name,
@@ -157,7 +157,7 @@ export default function Page() {
     <ThemeProvider>
       <SafeAreaView>
         {mountain !== null ? (
-          <ScrollContainer contentOffset={{ x: 4, y: 4243 }}>
+          <ScrollContainer>
             <Backdrop />
 
             <Horizontal>
@@ -186,7 +186,7 @@ export default function Page() {
 
             <Divider horizontalInset />
             <Grow>
-              <Preciperation showTime pop data={mountain.precipitation} />
+              <Preciperation showTime data={mountain.precipitation} />
             </Grow>
 
             <Divider horizontalInset />
@@ -211,38 +211,3 @@ export default function Page() {
     </ThemeProvider>
   )
 }
-
-/*
- *
-          <ScrollView>
-            <Wind
-              data={[
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-                [0, 0],
-              ]}
-            />
-            <SkiDisplay
-              pistes={[
-                {
-                  name: "hello",
-                  difficulty: "red",
-                  popularity: 1,
-                  snowQuality: 0.5,
-                },
-                {
-                  name: "world",
-                  difficulty: "blue",
-                  popularity: 2,
-                  snowQuality: 0.6,
-                },
-              ]}
-            />
-            */
