@@ -128,7 +128,7 @@ export default function Page() {
           initialRegion={{
             latitudeDelta: 0.1,
             longitudeDelta: 0.1,
-            ...mountain!.pos,
+            ...(mountain?.pos || { longitude: 0, latitude: 0 }),
           }}
         >
           {mountain?.emergency_services?.map((v, i) => (
