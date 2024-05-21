@@ -26,7 +26,7 @@ export const Wind: FC<Props> = ({ data, ...common }) => {
             <Icon size={30} source="arrow-down" />
           </Rotator>
 
-          <Text style={{ textAlign: "center" }}>{`${data[id][1]}m/s`}</Text>
+          <Text style={{ textAlign: "center" }}>{`${data[id][1]}`}</Text>
         </Container>
       ) : (
         <></>
@@ -34,5 +34,5 @@ export const Wind: FC<Props> = ({ data, ...common }) => {
     [data],
   )
 
-  return <TimePanel RenderChild={comp} title="Wind" {...common} />
+  return <TimePanel RenderChild={comp} title="Wind (m/s)" {...common} />
 }

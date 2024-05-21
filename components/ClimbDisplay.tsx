@@ -58,7 +58,7 @@ export const ClimbDisplay: FC<{ data: T }> = ({ data }) => (
         <Bold>Recommended gear</Bold>:
       </Text>
 
-      <Text>Foos</Text>
+      <Text>Helmet</Text>
     </ListContainer>
 
     <Horizontal>

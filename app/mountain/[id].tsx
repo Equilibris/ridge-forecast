@@ -111,49 +111,6 @@ export default function Page() {
     return null
   }, [])
 
-  const Sheet = useCallback(() => {
-    const theme = useTheme()
-
-    return (
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={["20%", "85%"]}
-        index={-1}
-        enablePanDownToClose
-        backgroundStyle={{ backgroundColor: theme.colors.background }}
-        handleIndicatorStyle={{ backgroundColor: theme.colors.onBackground }}
-      >
-        <MapView
-          style={{ height: "100%", width: "100%" }}
-          initialRegion={{
-            latitudeDelta: 0.1,
-            longitudeDelta: 0.1,
-            ...(mountain?.pos || {
-              longitude: 1,
-              latitude: 1,
-              latitudeDelta: 1,
-              longitudeDelta: 1,
-            }),
-          }}
-        >
-          {mountain?.emergency_services?.map((v, i) => (
-            // TODO: improve data model for emergency services so they can have key/title
-            <Marker
-              key={i}
-              coordinate={v.pos}
-              // title={v.name}
-              // tappable
-              // onPress={() => {
-              //   setSelected(v)
-              //   openSheet()
-              // }}
-            />
-          ))}
-        </MapView>
-      </BottomSheet>
-    )
-  }, [sheetRef, mountain])
-
   return (
     <ThemeProvider>
       <SafeAreaView>
@@ -212,7 +169,39 @@ export default function Page() {
         )}
       </SafeAreaView>
 
-      <Sheet />
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={["20%", "85%"]}
+        index={-1}
+        enablePanDownToClose
+      >
+        { mountain ?
+          <MapView
+            style={{ height: "100%", width: "100%" }}
+            initialRegion={{
+              latitudeDelta: 0.1,
+              longitudeDelta: 0.1,
+              ...(mountain?.pos || { longitude: 0, latitude: 0 }),
+            }}
+          >
+            {mountain.emergency_services.map((v, i) => (
+              // TODO: improve data model for emergency services so they can have key/title
+              <Marker
+                key={i}
+                coordinate={v.pos}
+                // title={v.name}
+                // tappable
+                // onPress={() => {
+                //   setSelected(v)
+                //   openSheet()
+                // }}
+              />
+            ))}
+          </MapView>
+        : <></>
+        }
+      </BottomSheet>
+
     </ThemeProvider>
   )
 }

@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo, useRef, useState } from "react"
+import React, { useCallback, useMemo, useRef, useState, useLayoutEffect } from "react"
 
+import { useNavigation } from "expo-router"
 import MapView, { Marker } from "react-native-maps"
 import { Icon } from "react-native-paper"
 import { View, StyleSheet } from "react-native"
@@ -52,6 +53,7 @@ const Container = styled.View`
 
 export default function Index() {
     const mountains = useData()
+    const navigation = useNavigation()
 
     const mapRef = useRef<MapView>(null)
     const sheetRef = useRef<BottomSheet>(null)
@@ -62,13 +64,19 @@ export default function Index() {
         [],
     )
 
+    useLayoutEffect(() => {
+      navigation.setOptions({
+        title: "RidgeForecast"
+      });
+    }, [navigation])
+
     const Sheet = useCallback(() => {
         const theme = useTheme()
 
         return (
             <BottomSheet
                 ref={sheetRef}
-                snapPoints={["20%", "85%"]}
+                snapPoints={["20%", "95%", "65%"]}
                 index={-1}
                 enablePanDownToClose
                 backgroundStyle={{ backgroundColor: theme.colors.background }}

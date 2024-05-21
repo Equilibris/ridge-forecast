@@ -17,8 +17,6 @@ const BottomSheet = styled(BottomSheetView)`
   flex-grow: 1;
 `
 const TitleContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
 `
 
 const ButtonText = styled(Bold)`
@@ -35,7 +33,7 @@ export const MapModal = (m: Mountain) => {
     <BottomSheet>
       <TitleContainer>
         <Bold variant="headlineLarge">{m.name}</Bold>
-        <Bold variant="headlineLarge">{mapper[m.data.type]}</Bold>
+        <Bold variant="titleLarge">{mapper[m.data.type]}</Bold>
       </TitleContainer>
 
       <Wind data={m.wind} />

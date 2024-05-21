@@ -31,10 +31,10 @@ export const AltsAtHeights: FC<Props> = ({ bot, top, height }) => {
   return (
     <Container>
       <Strecher style={{ height: height - 50 }}>
-        <TextBlock variant="displayLarge" style={{ color: "black" }}>
+        <TextBlock variant="displayLarge" style={{ color: "black", textAlign: "right" }}>
           {top}°
         </TextBlock>
-        <TextBlock variant="displayLarge">{bot}°</TextBlock>
+        <TextBlock variant="displayLarge" style={{ textAlign: "right" }}>{bot}°</TextBlock>
       </Strecher>
       <Grad style={{ height: height - 50 }} colors={["#536CAA", "#FFFFFF"]} />
     </Container>
