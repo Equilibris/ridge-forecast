@@ -1,23 +1,41 @@
 # Ridge Forecast
 
-## Tasks to do
+## How to run the project
 
-**WHEN YOU DO CODE MAKE SURE TO PR SO WE CAN CATCH SIMPLE REACT MISTAKES**
+Prerequisites: 
+- [NodeJS](https://nodejs.org/en/download/) and [Expo Go](https://expo.dev/client) installed on your phone. 
+- Expo CLI
 
-- [x] Implement mountain screen (Harry)
-- [ ] Avalance (Harry)
-- [ ] Make the preciperation component look good (Hifzur)
-- [ ] Add temprature at different altitudes component (William)
-- [x] Add more mountains (Mate)
-  - They are located in the file called `database.tsx`
-- [ ] Make react-native-paper theme match theme specified in the UI
-- [x] Make the bottom sheet in index.tsx look good (William)
-- [ ] Style the navigation
-- [ ] Increase scope a little, we are too close to being done
-  - [ ] Make a map appear when you click on emergency service button
-  - [ ] Maybe animate some components
-  - [ ] Add so depending on the weather the background changes to like
-        snow or rain or something
+Install the Expo CLI by running the following:
 
-Color pins differently
-Add both to the map page
+```bash
+npm install -g expo-cli
+```
+\
+Navigate to the project directory and run the following command to install the required dependencies: 
+
+```bash
+npm install
+```
+\
+To start the project, run the following command:
+
+```bash
+npx expo start
+```
+\
+Scan the QR code with the Expo Go app on your phone or use an emulator to run the app. \
+
+## Libraries used 
+
+
+UI Components and Styling Libraries:
+- [React Native](https://reactnative.dev/)
+- [React Native Paper](https://callstack.github.io/react-native-paper/)
+- [React Navigation](https://reactnavigation.org/)
+- [React Native Maps](https://github.com/react-native-maps/react-native-maps)
+- [emotion](https://emotion.sh/docs/introduction)
+
+
+Other Libraries:
+- [Expo](https://expo.dev/)
