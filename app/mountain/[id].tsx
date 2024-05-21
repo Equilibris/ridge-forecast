@@ -2,11 +2,11 @@
 // https://www.freepik.com/free-vector/flat-design-mountain-range-silhouette_45123202.htm#query=mountain&position=0&from_view=keyword&track=sph&uuid=9c6db3aa-764f-43c2-a875-f6d99bf307aa
 
 import React, {
-    FC,
-    useLayoutEffect,
-    useState,
-    useRef,
-    useCallback,
+  FC,
+  useLayoutEffect,
+  useState,
+  useRef,
+  useCallback,
 } from "react"
 
 import { useLocalSearchParams, useNavigation } from "expo-router"
@@ -53,24 +53,24 @@ const ImgDimmer = styled.View`
 `
 
 const Backdrop: FC<{ dimmed?: boolean }> = ({ dimmed }) => (
-    <BackdropContainer>
-        <ImgClipper>
-            <ImgTransformer>
-                {dimmed ? (
-                    <ImgDimmer>
-                        <Img />
-                    </ImgDimmer>
-                ) : (
-                    <Img />
-                )}
-            </ImgTransformer>
-        </ImgClipper>
+  <BackdropContainer>
+    <ImgClipper>
+      <ImgTransformer>
+        {dimmed ? (
+          <ImgDimmer>
+            <Img />
+          </ImgDimmer>
+        ) : (
+          <Img />
+        )}
+      </ImgTransformer>
+    </ImgClipper>
 
-        <LinearGradient
-            style={{ height: 1000, width: "100%" }}
-            colors={["#212B44", "#536CAA"]}
-        />
-    </BackdropContainer>
+    <LinearGradient
+      style={{ height: 1000, width: "100%" }}
+      colors={["#212B44", "#536CAA"]}
+    />
+  </BackdropContainer>
 )
 
 const ScrollContainer = styled.ScrollView`
@@ -86,132 +86,128 @@ const Grow = styled.View`
 `
 
 export default function Page() {
-    const { id } = useLocalSearchParams()
-    const navigation = useNavigation()
-    const [mountain, setMountain] = useState<null | Mountain>(null)
+  const { id } = useLocalSearchParams()
+  const navigation = useNavigation()
+  const [mountain, setMountain] = useState<null | Mountain>(null)
 
-    useLayoutEffect(() => {
-        if (typeof id === "string")
-            getMountainById(parseInt(id)).then(async (mnt) => {
-                if (mnt !== undefined) {
-                    console.log(mnt)
-                    await new Promise((r) => setTimeout(r, 300))
-                    setMountain(mnt)
-                    navigation.setOptions({
-                        title: mnt.name,
-                    })
-                }
-            })
-    }, [navigation])
+  useLayoutEffect(() => {
+    if (typeof id === "string")
+      getMountainById(parseInt(id)).then(async (mnt) => {
+        if (mnt !== undefined) {
+          console.log(mnt)
+          await new Promise((r) => setTimeout(r, 300))
+          setMountain(mnt)
+          navigation.setOptions({
+            title: mnt.name,
+          })
+        }
+      })
+  }, [navigation])
 
-    const sheetRef = useRef<BottomSheet>(null)
+  const sheetRef = useRef<BottomSheet>(null)
 
-    const openSheet = useCallback((_: GestureResponderEvent): null => {
-        sheetRef.current && sheetRef.current.expand()
-        return null
-    }, [])
+  const openSheet = useCallback((_: GestureResponderEvent): null => {
+    sheetRef.current && sheetRef.current.expand()
+    return null
+  }, [])
 
-    const Sheet = useCallback(() => {
-        const theme = useTheme()
-
-        return (
-            <BottomSheet
-                ref={sheetRef}
-                snapPoints={["20%", "85%"]}
-                index={-1}
-                enablePanDownToClose
-                backgroundStyle={{ backgroundColor: theme.colors.background }}
-                handleIndicatorStyle={{ backgroundColor: theme.colors.onBackground }}
-            >
-                <MapView
-                    style={{ height: "100%", width: "100%" }}
-                    initialRegion={{
-                        latitude: 45.1842259,
-                        longitude: 5.6743406,
-                        latitudeDelta: 1,
-                        longitudeDelta: 1,
-                    }}
-                >
-                    {mountain?.emergency_services?.map((v, i) => (
-                        // TODO: improve data model for emergency services so they can have key/title
-                        <Marker
-                            key={i}
-                            coordinate={{
-                                latitude: v.pos.latitude,
-                                longitude: v.pos.longitude,
-                            }}
-                        // title={v.name}
-                        // tappable
-                        // onPress={() => {
-                        //   setSelected(v)
-                        //   openSheet()
-                        // }}
-                        />
-                    ))}
-                </MapView>
-            </BottomSheet>
-        )
-    }, [sheetRef])
+  const Sheet = useCallback(() => {
+    const theme = useTheme()
 
     return (
-        <ThemeProvider>
-            <SafeAreaView>
-                {mountain !== null ? (
-                    <ScrollContainer>
-                        <Backdrop />
-
-                        <Horizontal>
-                            <Grow style={{ padding: 10 }}>
-                                <Popularity value={mountain.popularity} sz={40} />
-                            </Grow>
-                            <AltsAtHeights
-                                bot={mountain.temps[0]}
-                                top={mountain.temps[1]}
-                                height={500}
-                            />
-                        </Horizontal>
-
-                        <Divider horizontalInset />
-
-                        <Horizontal style={{ padding: 10 }}>
-                            <Grow>
-                                <Avalanches data={mountain.avalancheSafety} />
-                            </Grow>
-
-                            <Divider style={{ width: 1, height: "100%" }} />
-
-                            <Grow>
-                                <EmergencyServices
-                                    data={mountain.emergency_services}
-                                    cb={openSheet}
-                                />
-                            </Grow>
-                        </Horizontal>
-
-                        <Divider horizontalInset />
-                        <Grow>
-                            <Preciperation showTime data={mountain.precipitation} />
-                        </Grow>
-
-                        <Divider horizontalInset />
-
-                        <Pad padding="20px 0 0 0">
-                            <ActivityDisplay data={mountain.data} />
-                        </Pad>
-                    </ScrollContainer>
-                ) : (
-                    <Center
-                        style={{
-                            height: "100%",
-                        }}
-                    >
-                        <Backdrop dimmed={true} />
-                        <ActivityIndicator size="large" animating={true} />
-                    </Center>
-                )}
-            </SafeAreaView>
-
-            <Sheet />
-        </ThemeProvider>
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={["20%", "85%"]}
+        index={-1}
+        enablePanDownToClose
+        backgroundStyle={{ backgroundColor: theme.colors.background }}
+        handleIndicatorStyle={{ backgroundColor: theme.colors.onBackground }}
+      >
+        <MapView
+          style={{ height: "100%", width: "100%" }}
+          initialRegion={{
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1,
+            ...mountain!.pos,
+          }}
+        >
+          {mountain?.emergency_services?.map((v, i) => (
+            // TODO: improve data model for emergency services so they can have key/title
+            <Marker
+              key={i}
+              coordinate={v.pos}
+              // title={v.name}
+              // tappable
+              // onPress={() => {
+              //   setSelected(v)
+              //   openSheet()
+              // }}
+            />
+          ))}
+        </MapView>
+      </BottomSheet>
     )
+  }, [sheetRef, mountain])
+
+  return (
+    <ThemeProvider>
+      <SafeAreaView>
+        {mountain !== null ? (
+          <ScrollContainer>
+            <Backdrop />
+
+            <Horizontal>
+              <Grow style={{ padding: 10 }}>
+                <Popularity value={mountain.popularity} sz={40} />
+              </Grow>
+              <AltsAtHeights
+                bot={mountain.temps[0]}
+                top={mountain.temps[1]}
+                height={500}
+              />
+            </Horizontal>
+
+            <Divider horizontalInset />
+
+            <Horizontal style={{ padding: 10 }}>
+              <Grow>
+                <Avalanches data={mountain.avalancheSafety} />
+              </Grow>
+
+              <Divider style={{ width: 1, height: "100%" }} />
+
+              <Grow>
+                <EmergencyServices
+                  data={mountain.emergency_services}
+                  cb={openSheet}
+                />
+              </Grow>
+            </Horizontal>
+
+            <Divider horizontalInset />
+            <Grow>
+              <Preciperation showTime data={mountain.precipitation} />
+            </Grow>
+
+            <Divider horizontalInset />
+
+            <Pad padding="20px 0 0 0">
+              <ActivityDisplay data={mountain.data} />
+            </Pad>
+          </ScrollContainer>
+        ) : (
+          <Center
+            style={{
+              height: "100%",
+            }}
+          >
+            <Backdrop dimmed={true} />
+            <ActivityIndicator size="large" animating={true} />
+          </Center>
+        )}
+      </SafeAreaView>
+
+      <Sheet />
+    </ThemeProvider>
+  )
 }
